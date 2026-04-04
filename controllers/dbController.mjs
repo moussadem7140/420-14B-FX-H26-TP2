@@ -58,6 +58,7 @@ const seedDatabase = async (req, res) => {
       password: "Password123!",
       role: "admin",
     });
+    admin.password = await bcrypt.hash(admin.password, 12);
     await admin.save();
 
     const users = [
@@ -105,6 +106,8 @@ const seedDatabase = async (req, res) => {
 
     for (const userData of users) {
       const user = new User(userData);
+      const hashedPassword = await bcrypt.hash(user.password, 12);
+      user.password = hashedPassword;
       await user.save();
     }
 
