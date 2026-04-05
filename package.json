@@ -16,7 +16,7 @@
   "main": "app.mjs",
   "scripts": {
     "start": "SET NODE_ENV=production && node app.mjs",
-    "dev": " SET NODE_ENV=development && nodemon app.mjs"
+    "dev": " nodemon app.mjs"
   },
   "dependencies": {
     "bcrypt": "^6.0.0",

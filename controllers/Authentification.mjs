@@ -24,7 +24,7 @@ export async function CreateUser(req, res, next) {
       data: { user },
       message: "Utilisateur créé avec succès",
       status: 201,
-      path: req.url,
+      path: req.originalUrl,
       timestamp: new Date().toISOString(),
     });
   } catch (error) {
@@ -60,6 +60,75 @@ export async function ConnectUser(req, res, next) {
     res.status(200).json({
       data: { user, token },
       message: "Utilisateur connecté avec succès",
+      status: 200,
+      path: req.originalUrl,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+export async function getProfile(req, res, next) {
+  try {
+    const userbd = await User.findOne({ email: req.user.email });
+    const data = userbd.toObject();
+    delete data.password;
+    delete data.__v;
+
+    res.status(200).json({
+      data,
+      message: "Profil utilisateur récupéré avec succès",
+      status: 200,
+      path: req.originalUrl,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+export async function updateProfile(req, res, next) {
+  try {
+    const { firstName, lastName, role, phone } = req.body;
+    const userbd = await User.findOneAndUpdate(
+      { email: req.user.email },
+      { firstName, lastName, role, phone },
+      { new: true },
+    );
+    const data = userbd.toObject();
+    delete data.password;
+    delete data.__v;
+
+    res.status(200).json({
+      data,
+      message: "Profil utilisateur mis à jour avec succès",
+      status: 200,
+      path: req.originalUrl,
+      timestamp: new Date().toISOString(),
+    });
+  } catch (err) {
+    next(err);
+  }
+}
+export async function updatePassword(req, res, next) {
+  try {
+    const { currentPassword, newPassword } = req.body;
+    const userbd = await User.findOne({ email: req.user.email }).select(
+      "+password",
+    );
+    console.log(req.user.email);
+    if (!(await bcrypt.compare(currentPassword, userbd.password))) {
+      const err = new Error("Mot de passe actuel incorrect");
+      err.statusCode = 401;
+      throw err;
+    }
+    let passwordHash = await bcrypt.hash(newPassword, 12);
+    await userbd.updateOne({ password: passwordHash });
+    let data = userbd.toObject();
+    delete data.password;
+    delete data.__v;
+    res.status(200).json({
+      data,
+      message: "Mot de passe mis à jour avec succès",
       status: 200,
       path: req.originalUrl,
       timestamp: new Date().toISOString(),
