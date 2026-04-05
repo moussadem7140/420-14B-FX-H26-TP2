@@ -15,10 +15,11 @@
   "type": "module",
   "main": "app.mjs",
   "scripts": {
-    "start": "node app.mjs",
-    "dev": "nodemon app.mjs"
+    "start": "SET NODE_ENV=production && node app.mjs",
+    "dev": " SET NODE_ENV=development && nodemon app.mjs"
   },
   "dependencies": {
+    "bcrypt": "^6.0.0",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.6.1",
     "express": "^4.22.1",

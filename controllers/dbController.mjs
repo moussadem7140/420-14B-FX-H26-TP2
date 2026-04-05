@@ -2,6 +2,7 @@ import User from "../models/user.mjs";
 import Campsite from "../models/campsite.mjs";
 import Reservation from "../models/reservation.mjs";
 import mongoose from "mongoose";
+import bcrypt from "bcrypt";
 
 const seedDatabase = async (req, res) => {
   try {
