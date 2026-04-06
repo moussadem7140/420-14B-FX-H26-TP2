@@ -1,5 +1,5 @@
 import bcrypt from "bcrypt";
-import User from "../models/user.mjs";
+import User from "../../models/user.mjs";
 export async function verifierUser(req, res, next) {
   const { firstName, lastName, email, password } = req.body;
   if (!firstName || !lastName || !email || !password) {

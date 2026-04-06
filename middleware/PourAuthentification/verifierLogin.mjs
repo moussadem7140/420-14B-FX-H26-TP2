@@ -1,4 +1,3 @@
-import User from "../models/user.mjs";
 export async function verifierLogin(req, res, next) {
   const { email, password } = req.body;
   if (!email || !password) {

@@ -5,10 +5,10 @@ const router = express.Router();
 import * as authController from "../controllers/Authentification.mjs";
 //Middlewares
 import { verifierUser } from "../middleware/PourAuthentification/verifierUser.mjs";
-import { verifierLogin } from "../middleware/PourAnthentification/verifierLogin.mjs";
-import isAuth from "../middleware/PourAnthentification/isAuth.mjs";
-import verifierUserUpdate from "../middleware/PourAnthentification/verifierUserUpdate.mjs";
-import verifyPassword from "../middleware/PourAnthentification/VerifierMdp.mjs";
+import { verifierLogin } from "../middleware/PourAuthentification/verifierLogin.mjs";
+import isAuth from "../middleware/PourAuthentification/isAuth.mjs";
+import verifierUserUpdate from "../middleware/PourAuthentification/verifierUserUpdate.mjs";
+import verifyPassword from "../middleware/PourAuthentification/VerifierMdp.mjs";
 // Routes
 router.post("/register", verifierUser, authController.CreateUser);
 router.post("/login", verifierLogin, authController.ConnectUser);
