@@ -33,7 +33,7 @@ mongoose
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
-  .then(() => console.log("MongoDB connected"))
+  .then(() => console.log("MongoDB connected", process.env.MONGODB_URI))
   .catch((err) => console.log(err));
 
 const PORT = process.env.PORT || 3000;
@@ -41,3 +41,4 @@ app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
   console.log(`API available at http://localhost:${PORT}`);
 });
+export default app;
