@@ -7,6 +7,13 @@ const app = express();
 
 app.use(express.json());
 // Routes
+app.get("/", (req, res) => {
+  res.status(200).json({
+    message: "Bienvenue sur l'API de gestion de camping",
+    status: 200,
+    timestamp: new Date().toISOString(),
+  });
+});
 import dbRoutes from "./routes/db.mjs";
 app.use("/api/db", dbRoutes);
 
