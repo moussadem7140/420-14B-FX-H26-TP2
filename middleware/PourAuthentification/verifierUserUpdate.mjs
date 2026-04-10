@@ -1,3 +1,11 @@
+/**
+ * Vérifie les données d'un utilisateur lors de la mise à jour
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
+
 function verifierUserUpdate(req, res, next) {
   const { firstName, lastName, role, phone } = req.body;
   if (!firstName || !lastName || !role || !phone) {

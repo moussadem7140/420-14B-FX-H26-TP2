@@ -3,7 +3,13 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 import dotenv from "dotenv";
 dotenv.config();
-
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @return {Promise<void>}
+ */
 export async function CreateUser(req, res, next) {
   try {
     const { firstName, lastName, email, password, phone, role } = req.body;
@@ -31,6 +37,13 @@ export async function CreateUser(req, res, next) {
     next(error);
   }
 }
+/**
+ *
+ * @param {object} req
+ * @param {object} res
+ * @param {object} next
+ * @return {Promise<void>}
+ */
 export async function ConnectUser(req, res, next) {
   try {
     const { email, password } = req.body;
@@ -68,6 +81,13 @@ export async function ConnectUser(req, res, next) {
     next(err);
   }
 }
+/**
+ *
+ * @param {object} req
+ * @param {object} res
+ * @param {object} next
+ * @return {Promise<void>}
+ */
 export async function getProfile(req, res, next) {
   try {
     const userbd = await User.findOne({ email: req.user.email });
@@ -86,6 +106,13 @@ export async function getProfile(req, res, next) {
     next(err);
   }
 }
+/** *
+ * @param {object} req
+ * @param {object} res
+ * @param {object} next
+ * @return {Promise<void>}
+ *  */
+
 export async function updateProfile(req, res, next) {
   try {
     const { firstName, lastName, role, phone } = req.body;
@@ -109,6 +136,13 @@ export async function updateProfile(req, res, next) {
     next(err);
   }
 }
+/**
+ *
+ * @param {object} req
+ * @param {object} res
+ * @param {object} next
+ * @return {Promise<void>}
+ */
 export async function updatePassword(req, res, next) {
   try {
     const { currentPassword, newPassword } = req.body;

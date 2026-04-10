@@ -1,5 +1,14 @@
 import bcrypt from "bcrypt";
 import User from "../../models/user.mjs";
+
+/**
+ * Vérifie les données d'un utilisateur lors de la création
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
+
 export async function verifierUser(req, res, next) {
   const { firstName, lastName, email, password } = req.body;
   if (!firstName || !lastName || !email || !password) {

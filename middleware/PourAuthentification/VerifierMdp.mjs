@@ -1,3 +1,10 @@
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 function verifyPassword(req, res, next) {
   const { newPassword } = req.body;
   if (!newPassword) {

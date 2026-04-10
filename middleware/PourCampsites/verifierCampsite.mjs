@@ -5,8 +5,15 @@
 // • maxVehicleLength (nombre positif supérieur à 0, requis si type = rv)
 // • capacity (requis, nombre positif supérieur à 0 et requis)
 // • amenities (optionnel)
-// • description (optionnel)
+// • description (optionnel) */
 import Campsite from "../../models/campsite.mjs";
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 async function verifierCampsite(req, res, next) {
   const {
     name,

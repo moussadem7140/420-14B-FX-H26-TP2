@@ -8,6 +8,13 @@
 import Reservation from "../../models/reservation.mjs";
 import Campsite from "../../models/campsite.mjs";
 import User from "../../models/user.mjs";
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 async function verifierReservation(req, res, next) {
   const { campsite, startDate, endDate, guests } = req.body;
   // Vérification des champs requis

@@ -1,3 +1,10 @@
+/**
+ * Middleware pour vérifier si un camping est actuellement réservé avant de permettre sa modification ou suppression
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 import Reservation from "../../models/reservation.mjs";
 async function IsNotReserved(req, res, next) {
   const { id } = req.params;

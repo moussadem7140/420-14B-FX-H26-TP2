@@ -1,3 +1,10 @@
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 export async function verifierLogin(req, res, next) {
   const { email, password } = req.body;
   if (!email || !password) {

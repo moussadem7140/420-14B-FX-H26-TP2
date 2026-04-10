@@ -1,6 +1,13 @@
 import Reservation from "../models/reservation.mjs";
 import Campsite from "../models/campsite.mjs";
 import User from "../models/user.mjs";
+/** *
+ * Créer une nouvelle réservation
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 export async function createReservation(req, res, next) {
   try {
     const { campsite, startDate, endDate, guests } = req.body;
@@ -32,6 +39,13 @@ export async function createReservation(req, res, next) {
     next(err);
   }
 }
+/**
+ * Recupérer les réservations de l'utilisateur connecté
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 export async function getReservations(req, res, next) {
   try {
     let userDoc = await User.findOne({ email: req.user.email });
@@ -60,6 +74,13 @@ export async function getReservations(req, res, next) {
     next(err);
   }
 }
+/** *
+ * Recupérer une réservation par son ID
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 export async function getReservationById(req, res, next) {
   try {
     if (!req.params.id) {
@@ -90,6 +111,13 @@ export async function getReservationById(req, res, next) {
     next(err);
   }
 }
+/** *
+ * mettre à jour une réservation
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 export async function updateReservation(req, res, next) {
   if (!req.params.id) {
     const err = new Error("Le champ id est requis");

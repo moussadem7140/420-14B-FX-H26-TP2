@@ -4,6 +4,13 @@ import e from "express";
 dotenv.config();
 
 /** Vérifie si la requête a un token JWT valide */
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 const isAuth = (req, res, next) => {
   // Récupère le jeton depuis l'en-tête Authorization de la requête
   const authHeader = req.get("Authorization");

@@ -1,5 +1,12 @@
 import Campsite from "../models/campsite.mjs";
 import Reservation from "../models/reservation.mjs";
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @return {Promise<void>}
+ */
 export async function createCampsite(req, res, next) {
   try {
     const {
@@ -35,6 +42,13 @@ export async function createCampsite(req, res, next) {
     next(err);
   }
 }
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 export async function getAllCampsites(req, res, next) {
   try {
     let campsites = await Campsite.find();
@@ -71,6 +85,13 @@ export async function getAllCampsites(req, res, next) {
     next(err);
   }
 }
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 export async function getCampsiteById(req, res, next) {
   try {
     if (!req.params.id.match(/^[0-9a-fA-F]{24}$/)) {
@@ -95,7 +116,13 @@ export async function getCampsiteById(req, res, next) {
     next(err);
   }
 }
-
+/**
+ *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 export async function getAvailableCampsites(req, res, next) {
   try {
     const { startDate, endDate, type, vehicleLength, guests } = req.query;
@@ -269,6 +296,12 @@ export async function updateCampsite(req, res, next) {
     next(err);
   }
 }
+/** *
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 export async function deleteCampsite(req, res, next) {
   try {
     const { id } = req.params;

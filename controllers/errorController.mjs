@@ -1,7 +1,22 @@
+/** *
+ * Handles 404 errors when a route is not found
+ * @param {Object} req
+ * @param {Object} res
+ * @returns {Promise<void>}
+ */
 export const get404 = (req, res) => {
   console.log("404");
   res.status(404).json({ message: "ressource non trouvée", statusCode: 404 });
 };
+
+/**
+ * Handles errors and sends appropriate responses
+ * @param {Object} err
+ * @param {Object} req
+ * @param {Object} res
+ * @param {Object} next
+ * @returns {Promise<void>}
+ */
 
 export const getErrors = (err, req, res, next) => {
   console.log("err", err);
