@@ -170,7 +170,15 @@ export async function updateReservation(req, res, next) {
     path: req.originalUrl,
   });
 }
-//il faut isoler la fonction de calcul du prix total dans un service pour éviter la duplication de code entre la création et la modification de réservation
+//il faut isoler la fonction de calcul du prix total dans un service pour éviter la
+// duplication de code entre la création et la modification de réservation
+/**
+ *
+ * @param {string} campsiteId
+ * @param {Date} startDate
+ * @param {Date} endDate
+ * @returns {Promise<number>}
+ */
 async function calculerPrixTotal(campsiteId, startDate, endDate) {
   const campsiteDoc = await Campsite.findById(campsiteId);
   const days = Math.ceil(
@@ -178,6 +186,13 @@ async function calculerPrixTotal(campsiteId, startDate, endDate) {
   );
   return campsiteDoc.pricePerNight * days;
 }
+/**
+ * mettre à jour le status d'une réservation
+ * @param {object} req
+ * @param {object} res
+ * @param {object} next
+ * @returns {Promise<void>}
+ */
 export async function updateReservationStatus(req, res, next) {
   if (!req.params.id) {
     const err = new Error("Le champ id est requis");
